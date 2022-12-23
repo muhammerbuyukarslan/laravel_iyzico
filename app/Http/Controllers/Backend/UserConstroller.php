@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class UserConstroller extends Controller
 {
@@ -26,7 +27,7 @@ class UserConstroller extends Controller
      */
     public function create()
     {
-        return "create";
+        return view("backend.users.insert_form");
     }
 
     /**
@@ -37,7 +38,25 @@ class UserConstroller extends Controller
      */
     public function store(Request $request)
     {
-        return "store";
+        $name = $request->get("name");
+        $email = $request->get("email");
+        $password = $request->get("password");
+        $is_admin = $request->get("is_admin", 0);
+        $is_active = $request->get("is_active",0);
+
+        $is_admin  = "on" ? 1 : 0 ;
+        $is_active = "on" ? 1 : 0 ;
+
+        $user = new User();
+        $user->name         = $name;
+        $user->email        = $email;
+        $user->password     = $password;
+        $user->is_admin     = $is_admin;
+        $user->is_active    = $is_active;
+
+        $user->save();
+
+        return Redirect::to("/users");
     }
 
     /**
