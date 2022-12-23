@@ -44,9 +44,6 @@ class UserConstroller extends Controller
         $is_admin = $request->get("is_admin", 0);
         $is_active = $request->get("is_active",0);
 
-        $is_admin  = "on" ? 1 : 0 ;
-        $is_active = "on" ? 1 : 0 ;
-
         $user = new User();
         $user->name         = $name;
         $user->email        = $email;
@@ -78,7 +75,8 @@ class UserConstroller extends Controller
      */
     public function edit($id)
     {
-        return "edit";
+        $user = User::find($id);
+        return view("backend.users.update_form", ["user"=>$user]);
     }
 
     /**
@@ -90,7 +88,21 @@ class UserConstroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "update";
+
+        $name = $request->get("name");
+        $email = $request->get("email");
+        $is_admin = $request->get("is_admin", 0);
+        $is_active = $request->get("is_active",0);
+
+        $user = User::find($id);
+
+        $user->name         = $name;
+        $user->email        = $email;
+        $user->is_admin     = $is_admin;
+        $user->is_active    = $is_active;
+
+        $user->save();
+        return Redirect::to("/users");
     }
 
     /**
@@ -101,6 +113,9 @@ class UserConstroller extends Controller
      */
     public function destroy($id)
     {
-        return "destroy";
+        $user = User::find($id);
+        $user->delete();
+        //return Redirect::to("/users");
+        return response()->json(["message"=>"Done" , "id"=>$id]);
     }
 }

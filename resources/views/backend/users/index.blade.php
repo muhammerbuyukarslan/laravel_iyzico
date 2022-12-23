@@ -87,11 +87,18 @@
                     <tbody>
                     @if(count($users)>0)
                         @foreach($users as $user)
-                    <tr>
+                    <tr id="{{$user->user_id}}">
+
                         <td>{{$loop->iteration}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{$user->is_active}}</td>
+                        <td>
+                            @if($user->is_active)
+                                <span class="badge bg-success">Aktif</span>
+                            @else
+                                <span class="badge bg-danger">Pasif</span>
+                            @endif
+                        </td>
                         <td>
                             <ul class="nav float-start">
                                 <li class="nav-item">
