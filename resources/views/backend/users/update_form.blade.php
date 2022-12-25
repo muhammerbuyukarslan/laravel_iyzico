@@ -75,17 +75,24 @@
             </div>
             <h2>Kullanıcı Düzenle</h2>
             <div class="table-responsive">
-                <form action="{{url("/users/$user->user_id")}}" METHOD="POST" autocomplete="off">
+                <form action="{{url("/users/$user->user_id")}}" METHOD="POST" autocomplete="off" novalidate>
                     @csrf
                     @method("PUT")
+                    <input type="hidden" name="user_id" value="{{$user->user_id}}">
                     <div class="row">
                         <div class="col-lg-6">
                                 <label for="name" class="form-label">Ad Soyad</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Ad Soyad Giriniz" value="{{$user->name}}">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Ad Soyad Giriniz" value="{{old("name",$user->name)}}">
+                                @error("name")
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                         </div>
                         <div class="col-lg-6">
                                 <label for="email" class="form-label">Eposta</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Eposta Giriniz" value="{{$user->email}}">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Eposta Giriniz" value="{{old("email",$user->email)}}">
+                                @error("email")
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                         </div>
                     </div>
                     <div class="row">
