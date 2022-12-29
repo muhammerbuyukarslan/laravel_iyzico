@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserConstroller extends Controller
 {
+    public function __construct()
+    {
+        $this->returnUrl = "/users";
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,22 +45,12 @@ class UserConstroller extends Controller
      */
     public function store(UserRequest $request)
     {
-        $name = $request->get("name");
-        $email = $request->get("email");
-        $password = $request->get("password");
-        $is_admin = $request->get("is_admin", 0);
-        $is_active = $request->get("is_active",0);
-
         $user = new User();
-        $user->name         = $name;
-        $user->email        = $email;
-        $user->password     = Hash::make($password);
-        $user->is_admin     = $is_admin;
-        $user->is_active    = $is_active;
-
+        $data =$this->prepare($request,$user->getFillable());
+        $user ->fill($data);
         $user->save();
 
-        return Redirect::to("/users");
+        return Redirect::to($this->returnUrl);
     }
 
     /**
@@ -64,20 +59,9 @@ class UserConstroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        return "show => $id";
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
         return view("backend.users.update_form", ["user"=>$user]);
     }
 
@@ -88,23 +72,15 @@ class UserConstroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, User $user)
     {
-
-        $name = $request->get("name");
-        $email = $request->get("email");
-        $is_admin = $request->get("is_admin", 0);
-        $is_active = $request->get("is_active",0);
-
-        $user = User::find($id);
-
-        $user->name         = $name;
-        $user->email        = $email;
-        $user->is_admin     = $is_admin;
-        $user->is_active    = $is_active;
-
+        $data =$this->prepare($request,$user->getFillable());
+        $user ->fill($data);
+        $user->is_admin=array_key_exists("is_admin",$data)? $data["is_admin"] : 0;
+        $user->is_active=array_key_exists("is_active",$data)? $data["is_active"] : 0;
         $user->save();
-        return Redirect::to("/users");
+
+        return Redirect::to($this->returnUrl);
     }
 
     /**
@@ -113,12 +89,11 @@ class UserConstroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
         $user->delete();
         //return Redirect::to("/users");
-        return response()->json(["message"=>"Done" , "id"=>$id]);
+        return response()->json(["message"=>"Done" , "id"=>$user->user_id]);
     }
 
     /**
@@ -132,9 +107,9 @@ class UserConstroller extends Controller
     }
     public function changePassword(User $user,UserRequest $request)
     {
-        $password = $request->get("password");
-        $user->password =Hash::make($password);
+        $data =$this->prepare($request,$user->getFillable());
+        $user ->fill($data);
         $user->save();
-        return Redirect::to("/users");
+        return Redirect::to($this->returnUrl);
     }
 }
