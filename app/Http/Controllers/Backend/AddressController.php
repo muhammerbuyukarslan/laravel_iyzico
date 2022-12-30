@@ -18,10 +18,10 @@ class AddressController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index(User $user) : \Illuminate\Contracts\View\View
+    public function index(User $users) : \Illuminate\Contracts\View\View
     {
         $users = User::all();
-        return view("beckend.users.index".["users"=>$users]);
+        return view("beckend.addresses.index".["users"=>$users]);
     }
 
     /**
