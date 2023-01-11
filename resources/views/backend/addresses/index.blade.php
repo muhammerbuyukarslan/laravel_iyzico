@@ -19,7 +19,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($users)>0)
+                @if(count($addrs)>0)
                     @foreach($users as $user)
                         <tr id="{{$user->user_id}}">
 
