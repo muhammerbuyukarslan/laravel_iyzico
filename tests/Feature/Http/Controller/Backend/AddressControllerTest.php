@@ -15,7 +15,6 @@ class AddressControllerTest extends TestCase
     public function text_index_page()
     {
         $response = $this->get('/users/2/addresses');
-
         $response->assertStatus(200);
     }
     public function test_index_url_goes_to_correct_view()

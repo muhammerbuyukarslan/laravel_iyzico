@@ -26,7 +26,7 @@ class AddressController extends Controller
     public function index(User $user) : \Illuminate\Contracts\View\View
     {
         $addrs = $user->addrs;
-        return view("backend.addresses.index",["addrs"=>$addrs]);
+        return view("backend.addresses.index",["addrs"=>$addrs,"user"=>$user]);
     }
 
     /**
@@ -92,7 +92,7 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function destroy(Address $address)
+    public function destroy(User $user,Address $address)
     {
         $address->delete();
         return response()->json(["message"=>"Done" , "id"=>$address->address_id]);

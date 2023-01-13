@@ -22,15 +22,14 @@
                 @if(count($users)>0)
                     @foreach($users as $user)
                         <tr id="{{$user->user_id}}">
-
                             <td>{{$loop->iteration}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>
                                 @if($user->is_active)
-                                    <span class="badge bg-success">Aktif</span>
+                                    <span class="mt-2 badge bg-success">Aktif</span>
                                 @else
-                                    <span class="badge bg-danger">Pasif</span>
+                                    <span class="mt-2 badge bg-danger">Pasif</span>
                                 @endif
                             </td>
                             <td>

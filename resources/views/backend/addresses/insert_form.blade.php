@@ -1,62 +1,54 @@
 @extends("backend.shared.backend_theme")
-@section("title","Kullanıcı Modülü")
-@section("subtitle","Yeni Kullanıcı Ekle")
+@section("title","Adres Modülü")
+@section("subtitle","Yeni Adres Ekle")
 @section("btn_url",url()->previous())
 @section("btn_colour","danger")
 @section("btn_label","Geri Dön")
 @section("btn_icon","arrow-left")
 @section("content")
     <div class="container">
-        <form action="{{url("/users")}}" METHOD="POST">
+        <form action="{{url("/users/$user->user_id/addresses")}}" METHOD="POST" autocomplete="off" novalidate>
             @csrf
+            <input type="hidden" name="user_id" value="{{$user->user_id}}">
             <div class="row">
                 <div class="col-lg-6 mt-3">
-                    <label for="name" class="form-label">Ad Soyad</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Ad Soyad Giriniz" value="{{old("name")}}">
-                    @error("name")
+                    <label for="city" class="form-label">Şehir</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Şehir Giriniz" value="{{old("city")}}">
+                    @error("city")
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <label for="email" class="form-label">Eposta</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Eposta Giriniz" value="{{old("email")}}">
-                    @error("email")
+                    <label for="district" class="form-label">İlçe</label>
+                    <input type="text" class="form-control" id="district" name="district" placeholder="İlçe Giriniz" value="{{old("district")}}">
+                    @error("district")
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 mt-3">
-                    <label for="password" class="form-label">Şifre Giriniz</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Şifre Giriniz">
-                    @error("password")
+                    <label for="zipcode" class="form-label">Posta Kodu</label>
+                    <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="Posta Kodu Giriniz">
+                    @error("zipcode")
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
-                <div class="col-lg-6 mt-3">
-                    <label for="password_confirmation" class="form-label">Şifre Tekrarı</label>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Şifrenizi Tekrar Giriniz">
-                    @error("password")
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
+            <div class="col-lg-6">
+                <div class="col-lg-6">
+                    <div class="form-check mt-5">
+                        <input class="form-check-input" type="checkbox" id="is_default" name="is_default" value="1">
+                        <label class="form-check-label" for="is_default">
+                            Varsayılan
+                        </label>
+                    </div>
                 </div>
             </div>
+        </div>
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" id="is_admin" name="is_admin" value="1">
-                        <label class="form-check-label" for="is_admin">
-                            Yetkili Kullanıcı
-                        </label>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1">
-                        <label class="form-check-label" for="is_active">
-                            Aktif Kullanıcı
-                        </label>
-                    </div>
+                <div class="col-lg-12">
+                    <label for="address"></label>
+                    <textarea name="address" id="address" class="form-control" cols="20" rows="5"></textarea>
                 </div>
             </div>
             <div class="row">

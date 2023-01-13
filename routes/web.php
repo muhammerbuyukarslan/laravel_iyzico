@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+     return ('Ana Sayfaya Hoş geldin');
 });
 
 Route::resource("/users", \App\Http\Controllers\Backend\UserController::class);
