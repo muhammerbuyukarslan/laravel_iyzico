@@ -1,12 +1,12 @@
 @extends("backend.shared.backend_theme")
-    @section("title","Kullanıcı Modülü")
-    @section("subtitle","Kullanıcılar")
-    @section("btn_url",url("/users/create"))
-    @section("btn_colour","success")
-    @section("btn_label","Kullanıcı Ekle")
-    @section("btn_icon","plus")
-    @section("content")
-        <div class="container">
+@section("title","Kullanıcı Modülü")
+@section("subtitle","Kullanıcılar")
+@section("btn_url",url("/users/create"))
+@section("btn_colour","success")
+@section("btn_label","Kullanıcı Ekle")
+@section("btn_icon","plus")
+@section("content")
+    <div class="container">
         <div class="table-responsive">
             <table class="table table-striped table-sm">
                 <thead>
@@ -41,19 +41,22 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link list-item-delete text-black" href="{{url("/users/$user->user_id")}}">
+                                        <a class="nav-link list-item-delete text-black"
+                                           href="{{url("/users/$user->user_id")}}">
                                             <span data-feather="trash-2"></span>
                                             Sil
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-black" href="{{url("/users/$user->user_id/change-password")}}">
+                                        <a class="nav-link text-black"
+                                           href="{{url("/users/$user->user_id/change-password")}}">
                                             <span data-feather="lock"></span>
                                             Şifre Değiştir
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-black" href="{{url("/users/$user->user_id/addresses")}}">
+                                        <a class="nav-link text-black"
+                                           href="{{url("/users/$user->user_id/addresses")}}">
                                             <span data-feather="map-pin"></span>
                                             Adreslerim
                                         </a>
@@ -73,5 +76,5 @@
                 @endif
             </table>
         </div>
-        </div>
-    @endsection
+    </div>
+@endsection
