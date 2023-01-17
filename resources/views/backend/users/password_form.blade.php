@@ -11,18 +11,10 @@
             @csrf
             <div class="row">
                 <div class="col-lg-6 mt-3">
-                    <label for="password" class="form-label">Şifre Giriniz</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Şifre Giriniz">
-                    @error("password")
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
+                    <x-input label="Şifre" placeholder="Şifre Giriniz" type="password" field="password" value="" />
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <label for="password_confirmation" class="form-label">Şifre Tekrarı</label>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Şifrenizi Tekrar Giriniz">
-                    @error("password")
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
+                    <x-input label="Şifre Tekrarı" placeholder="Şifrenizi Tekrar Giriniz" type="password" field="password_confirmation" value="" />
                 </div>
             </div>
             <div class="row">

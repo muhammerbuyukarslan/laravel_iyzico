@@ -11,52 +11,26 @@
             @csrf
             <div class="row">
                 <div class="col-lg-6 mt-3">
-                    <label for="name" class="form-label">Ad Soyad</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Ad Soyad Giriniz" value="{{old("name")}}">
-                    @error("name")
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
+                    <x-input label="Ad Soyad" placeholder="Ad Soyad Giriniz" field="name" value="" />
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <label for="email" class="form-label">Eposta</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Eposta Giriniz" value="{{old("email")}}">
-                    @error("email")
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
+                    <x-input label="Eposta" placeholder="Eposta Giriniz" type="email" field="email" value="" />
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 mt-3">
-                    <label for="password" class="form-label">Şifre Giriniz</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Şifre Giriniz">
-                    @error("password")
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
+                    <x-input label="Şifre" placeholder="Şifre Giriniz" type="password" field="password" value="" />
                 </div>
                 <div class="col-lg-6 mt-3">
-                    <label for="password_confirmation" class="form-label">Şifre Tekrarı</label>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Şifrenizi Tekrar Giriniz">
-                    @error("password")
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
+                    <x-input label="Şifre Tekrarı" placeholder="Şifrenizi Tekrar Giriniz" type="password" field="password_confirmation" value="" />
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" id="is_admin" name="is_admin" value="1">
-                        <label class="form-check-label" for="is_admin">
-                            Yetkili Kullanıcı
-                        </label>
-                    </div>
+                    <x-checkbox label="Yetkili Kullanıcı" field="is_admin" />
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1">
-                        <label class="form-check-label" for="is_active">
-                            Aktif Kullanıcı
-                        </label>
-                    </div>
+                    <x-checkbox label="Aktif Kullanıcı" field="is_active" />
                 </div>
             </div>
             <div class="row">

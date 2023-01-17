@@ -30,7 +30,9 @@
         </div>
             <div class="row">
                 <div class="col-lg-12">
+                    <div class="col mt-4">
                     <x-textarea label="Açık Adres" placeholder="Açık Adres Giriniz" field="address" value="" />
+                    </div>
                 </div>
             </div>
             <div class="row">
