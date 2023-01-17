@@ -11,4 +11,10 @@
             Kullanıcılar
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/categories">
+            <span data-feather="bookmark"></span>
+            Kategori
+        </a>
+    </li>
 </ul>
