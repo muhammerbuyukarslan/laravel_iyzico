@@ -7,7 +7,7 @@
 @section("btn_icon","arrow-left")
 @section("content")
     <div class="container">
-        <form action="{{url("/category/$category->category_id")}}" METHOD="POST" autocomplete="off" novalidate>
+        <form action="{{url("/categories/$category->category_id")}}" METHOD="POST" autocomplete="off" novalidate>
             @csrf
             @method("PUT")
             <input type="hidden" name="$category_id" value="{{$category->category_id}}">

@@ -6,15 +6,24 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/users">
+        <a class="nav-link {{\Illuminate\Support\Str::of(url()->current())->contains("/users") ? "active" : ""}}"
+           href="/users">
             <span data-feather="user"></span>
             Kullanıcılar
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/categories">
+        <a class="nav-link {{\Illuminate\Support\Str::of(url()->current())->contains("/categories") ? "active" : ""}}"
+           href="/categories">
             <span data-feather="bookmark"></span>
             Kategori
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{\Illuminate\Support\Str::of(url()->current())->contains("/products") ? "active" : ""}}"
+           href="/products">
+            <span data-feather="shopping-bag"></span>
+            Ürünler
         </a>
     </li>
 </ul>
