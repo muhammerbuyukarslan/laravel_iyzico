@@ -18,7 +18,7 @@
                     <select name="category_id" id="category_id" class="form-select">
                         <option value="-1">Seçiniz</option>
                         @foreach($categories as $category)
-                            <option value="{{$category->category_id}}">{{$category->name}}</option>
+                            <option value="{{$category->category_id}}" selected>{{$category->name}}</option>
                         @endforeach
                     </select>
                     @error("category_id")

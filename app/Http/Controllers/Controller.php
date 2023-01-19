@@ -23,14 +23,28 @@ class Controller extends BaseController
     public function prepare($request ,$fillables): array
     {
         $data = array();
-        foreach ($fillables as $fillable){
-            if ($request->has($fillable)){
+        foreach ($fillables as $fillable)
+        {
+            if ($request->has($fillable))
+            {
                 $data[$fillable] = $request->get($fillable);
             }
-            else{
-                if (\Illuminate\Support\Str::of($fillable)->startsWith("is_")){
+            else
+            {
+                if (\Illuminate\Support\Str::of($fillable)->startsWith("is_"))
+                {
                     $data[$fillable]=0;
                 }
+            }
+        }
+
+        if (count($request->allFiles()) > 0 )
+        {
+            foreach ( $request->allFiles() as $key => $value)
+            {
+                $uploadedFile = $request ->file($key);
+                $data[$key] = $uploadedFile-> hashName();
+                $uploadedFile->storeAs($this->fileRepo,$data[$key]);
             }
         }
 
