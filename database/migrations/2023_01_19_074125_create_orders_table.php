@@ -1,12 +1,11 @@
 <?php
 
 use App\Models\Cart;
-use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCartDetailsTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +14,11 @@ class CreateCartDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cart_details', function (Blueprint $table) {
-            $table->id("cart_details_id");
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id("order_id");
             $table->foreignIdFor(Cart::class,"cart_id");
-            $table->foreignIdFor(Product::class,"product_id");
-            $table->integer("quantity");
+            $table->string("code");
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateCartDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cart_details');
+        Schema::dropIfExists('orders');
     }
 }
