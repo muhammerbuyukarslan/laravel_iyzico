@@ -29,7 +29,6 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Giriş</a>
                                     </li>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -38,42 +37,40 @@
             </div>
             <div class="row mt-3">
                 <div class="col-3" >
-                    <ul>
-                        <h5><strong>Kategoriler</strong></h5>
+                    <ul class="list-group">
+                        <li class="list-group-item"><h5><strong>Kategoriler</strong></h5></li>
                     </ul>
-
-                    <ul>
-
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a class="link-dark" style="text-decoration: none" href="/">Tümü</a>
+                        </li>
                         @if(count($categories) > 0)
                             @foreach($categories as $category)
-                                <li class="form-control">
-                                    <a href="/kategori/{{$category->slug}}">{{$category->name}}</a>
+                                <li  class="list-group-item">
+                                    <a class="link-dark" style="text-decoration: none" href="/kategori/{{$category->slug}}">{{$category->name}}</a>
                                 </li>
                             @endforeach
                         @endif
                     </ul>
                 </div>
                 <div class="col-9 ">
-                    <ul>
-                        <h5><strong>Ürünler</strong></h5>
+                    <ul class="list-group">
+                        <div class="list-group-item"><h5><strong>Ürünler</strong></h5></div>
                     </ul>
-
-
                         @if(count($products) > 0)
-                            @foreach($products as $product)
-
-                                    <div class="card" style="width: 18rem;">
-                                        <img class="card-img-top" src="{{asset("/storage/products/".$product->images[0]->image_url)}}" alt="{{$product->images[0]->alt}}">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{$product->name}}</h5>
-                                            <p class="card-text">{{$product->lead}}</p>
-                                            <a href="/sepete-ekle" class="btn btn-primary">Sepete Ekle</a>
+                            <div class="card-group">
+                                @foreach($products as $product)
+                                        <div class="card" style="width: 18rem;">
+                                            <img class="card-img-top" src="{{asset("/storage/products/".$product->images[0]->image_url)}}" alt="{{$product->images[0]->alt}}">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{$product->name}}</h5>
+                                                <p class="card-text">{{$product->lead}}</p>
+                                                <a href="/sepete-ekle/{{$product->product_id}}" class="btn btn-primary">Sepete Ekle</a>
+                                            </div>
                                         </div>
-                                    </div>
-
-                            @endforeach
+                                @endforeach
+                            </div>
                         @endif
-
                 </div>
             </div>
         </div>
