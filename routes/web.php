@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class ,'index']);
 Route::get('/kategori/{categoriSlug?}', [HomeController::class ,'index']);
+// yorum
 
 
 Route::resource("/users", UserController::class);
