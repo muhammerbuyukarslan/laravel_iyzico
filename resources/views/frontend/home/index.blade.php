@@ -26,9 +26,21 @@
                                     <li class="nav-item">
                                         <a class="nav-link active" aria-current="page" href="/">Ana Sayfa</a>
                                     </li>
+                                    @auth()
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Giriş</a>
+                                        <a class="nav-link" href="/sepetim">Sepetim</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/cikis">Çıkış</a>
+                                    </li>
+                                    @else
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/giris">Giriş Yap</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/uye-ol">Üye Ol</a>
+                                    </li>
+                                    @endauth
                                 </ul>
                             </div>
                         </div>
@@ -47,7 +59,7 @@
                         @if(count($categories) > 0)
                             @foreach($categories as $category)
                                 <li  class="list-group-item">
-                                    <a class="link-dark" style="text-decoration: none" href="/kategori/{{$category->slug}}">{{$category->name}}</a>
+                                    <a class="link-dark" style="text-decoration: none" href="/kategori/{{$category->slug}}" >{{$category->name}}</a>
                                 </li>
                             @endforeach
                         @endif
@@ -58,14 +70,14 @@
                         <div class="list-group-item"><h5><strong>Ürünler</strong></h5></div>
                     </ul>
                         @if(count($products) > 0)
-                            <div class="card-group">
+                            <div class="card-group" >
                                 @foreach($products as $product)
-                                        <div class="card" style="width: 18rem;">
-                                            <img class="card-img-top" src="{{asset("/storage/products/".$product->images[0]->image_url)}}" alt="{{$product->images[0]->alt}}">
+                                        <div class="card" style="width: 18em">
+                                            <img class="card-img-top" src="{{asset("/storage/products/".$product->images[0]->image_url)}}" alt="{{$product->images[0]->alt}}" >
                                             <div class="card-body">
                                                 <h5 class="card-title">{{$product->name}}</h5>
                                                 <p class="card-text">{{$product->lead}}</p>
-                                                <a href="/sepete-ekle/{{$product->product_id}}" class="btn btn-primary">Sepete Ekle</a>
+                                                <a href="/sepetim/ekle/{{$product->product_id}}" class="btn btn-primary">Sepete Ekle</a>
                                             </div>
                                         </div>
                                 @endforeach

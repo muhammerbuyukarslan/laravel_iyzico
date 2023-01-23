@@ -17,4 +17,8 @@ class Order extends Model
       'cart_id',
       'code'
     ];
+    public function details()
+    {
+        return $this->hasMany(OrderDetails::class, "order_id", "order_id");
+    }
 }

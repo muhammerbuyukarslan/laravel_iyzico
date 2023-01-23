@@ -14,9 +14,12 @@ class CartDetails extends Model
     protected $fillable = [
         'cart_details_id',
         'cart_id',
-        'cart_id',
         'product_id',
-        'quantity'
+        'quantity',
 
     ];
+    public function product()
+    {
+        return $this->hasOne(Product::class, "product_id", "product_id");
+    }
 }
