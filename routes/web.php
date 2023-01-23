@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Controllers\Backend\AddressController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
@@ -8,8 +7,20 @@ use App\Http\Controllers\Backend\ProductImageController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/kategori/{category:slug}', [HomeController::class, 'index']);
@@ -27,6 +38,8 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/sepetim/ekle/{product}", [CartController::class, 'add']);
     Route::get("/sepetim/sil/{cartDetails}", [CartController::class, 'remove']);
 
+    Route::get("/satin-al", [CheckoutController::class, 'showCheckoutForm']);
+    Route::post("/satin-al", [CheckoutController::class, 'checkout']);
 });
 
 
